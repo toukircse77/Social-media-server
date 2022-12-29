@@ -52,7 +52,16 @@ async function run() {
       res.send(result);
   })
 
-  // get all post data from database 
+  // get all post data for media pages
+  app.get('/allPosts', async (req, res) => {
+    const quary = {};
+    const cursor = postsCollection.find(quary);
+    const posts = await cursor.toArray();
+    res.send(posts)
+})
+
+
+  // get home 3 post data from database 
   app.get('/Posts', async (req, res) => {
     const quary = {};
     const cursor = postsCollection.find(quary).limit(3);
